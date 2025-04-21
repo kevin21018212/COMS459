@@ -15,10 +15,12 @@ function App() {
       .then(() => {
         setLoggedIn(true);
         loadImages();
-        setLoading(false);
       })
       .catch(() => {
-        navigate("/login");
+        setLoggedIn(false);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }, []);
 
@@ -28,6 +30,15 @@ function App() {
   };
 
   if (loading) return <p>Loading...</p>;
+
+  if (!loggedIn) {
+    return (
+      <div className="container">
+        <h1>Not Logged In</h1>
+        <button onClick={() => navigate("/login")}>Login</button>
+      </div>
+    );
+  }
 
   return (
     <div className="container">
