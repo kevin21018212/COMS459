@@ -1,39 +1,58 @@
 import { useEffect, useState } from "react";
-import type { Schema } from "../amplify/data/resource";
-import { generateClient } from "aws-amplify/data";
-
-const client = generateClient<Schema>();
+import { useNavigate } from "react-router-dom";
+import { getCurrentUser } from "aws-amplify/auth";
+import { listImages, makePublic, makePrivate, deleteImage } from "./lib/image-api";
+import "./App.css";
 
 function App() {
-  const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
+  const [images, setImages] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    client.models.Todo.observeQuery().subscribe({
-      next: (data) => setTodos([...data.items]),
-    });
+    getCurrentUser()
+      .then(() => {
+        setLoggedIn(true);
+        loadImages();
+        setLoading(false);
+      })
+      .catch(() => {
+        navigate("/login");
+      });
   }, []);
 
-  function createTodo() {
-    client.models.Todo.create({ content: window.prompt("Todo content") });
-  }
+  const loadImages = async () => {
+    const data = await listImages();
+    setImages(data);
+  };
+
+  if (loading) return <p>Loading...</p>;
 
   return (
-    <main>
-      <h1>My todos</h1>
-      <button onClick={createTodo}>+ new</button>
-      <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>{todo.content}</li>
+    <div className="container">
+      <h1>Your Images</h1>
+      <div className="image-grid">
+        {images.map((img) => (
+          <div key={img.key} className={`image-card ${img.visibility === "private" ? "gray" : ""}`}>
+            <img src={img.url} alt={img.key} />
+            <div className="actions">
+              {img.visibility === "private" ? (
+                <>
+                  <button onClick={() => makePublic(img.key).then(loadImages)}>Make Public</button>
+                  <button onClick={() => deleteImage(img.key).then(loadImages)}>Delete</button>
+                </>
+              ) : (
+                <>
+                  <button onClick={() => makePrivate(img.key).then(loadImages)}>Make Private</button>
+                  <p className="link">🔗 {img.url}</p>
+                </>
+              )}
+            </div>
+          </div>
         ))}
-      </ul>
-      <div>
-        🥳 App successfully hosted. Try creating a new todo.
-        <br />
-        <a href="https://docs.amplify.aws/react/start/quickstart/#make-frontend-updates">
-          Review next step of this tutorial.
-        </a>
       </div>
-    </main>
+    </div>
   );
 }
 
