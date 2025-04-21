@@ -34,8 +34,10 @@ function App() {
   if (!loggedIn) {
     return (
       <div className="container">
-        <h1>Not Logged In</h1>
-        <button onClick={() => navigate("/login")}>Login</button>
+        <div className="login-box">
+          <h1>Not Logged In</h1>
+          <button onClick={() => navigate("/login")}>Login</button>
+        </div>
       </div>
     );
   }
