@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { getCurrentUser } from "aws-amplify/auth";
 import { listImages, makePublic, makePrivate, deleteImage } from "./lib/image-api";
 import "./App.css";
+import ImageGrid from "./imageGrid";
+import UploadImage from "./uploadImage";
 
 function App() {
   const [images, setImages] = useState<any[]>([]);
@@ -29,6 +31,18 @@ function App() {
     setImages(data);
   };
 
+  const handleMakePublic = (key: string) => {
+    makePublic(key).then(loadImages);
+  };
+
+  const handleMakePrivate = (key: string) => {
+    makePrivate(key).then(loadImages);
+  };
+
+  const handleDelete = (key: string) => {
+    deleteImage(key).then(loadImages);
+  };
+
   if (loading) return <p>Loading...</p>;
 
   if (!loggedIn) {
@@ -45,26 +59,15 @@ function App() {
   return (
     <div className="container">
       <h1>Your Images</h1>
-      <div className="image-grid">
-        {images.map((img) => (
-          <div key={img.key} className={`image-card ${img.visibility === "private" ? "gray" : ""}`}>
-            <img src={img.url} alt={img.key} />
-            <div className="actions">
-              {img.visibility === "private" ? (
-                <>
-                  <button onClick={() => makePublic(img.key).then(loadImages)}>Make Public</button>
-                  <button onClick={() => deleteImage(img.key).then(loadImages)}>Delete</button>
-                </>
-              ) : (
-                <>
-                  <button onClick={() => makePrivate(img.key).then(loadImages)}>Make Private</button>
-                  <p className="link">🔗 {img.url}</p>
-                </>
-              )}
-            </div>
-          </div>
-        ))}
-      </div>
+
+      <ImageGrid
+        images={images}
+        onMakePublic={handleMakePublic}
+        onMakePrivate={handleMakePrivate}
+        onDelete={handleDelete}
+      />
+
+      <UploadImage onUploadComplete={loadImages} />
     </div>
   );
 }
