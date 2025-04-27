@@ -27,3 +27,12 @@ export async function deleteImage(key: string) {
     headers: { "Content-Type": "application/json" },
   }).then((res) => res.json());
 }
+export async function uploadImage(file: File) {
+  const formData = new FormData();
+  formData.append("file", file);
+
+  return fetch(`${API}/upload`, {
+    method: "POST",
+    body: formData,
+  }).then((res) => res.json());
+}
