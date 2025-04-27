@@ -1,0 +1,100 @@
+/* Container for uploading section */
+.upload-section {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* File input styling */
+.upload-section input[type="file"] {
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+/* Upload button styling */
+.upload-section button {
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  background-color: #4f46e5; /* Indigo */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.upload-section button:disabled {
+  background-color: #9ca3af; /* Gray when disabled */
+  cursor: not-allowed;
+}
+
+.upload-section button:hover:not(:disabled) {
+  background-color: #4338ca;
+}
+
+/* Image grid layout */
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+/* Each image card */
+.image-card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
+
+.image-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Image inside the card */
+.image-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Action buttons under each image */
+.actions {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Buttons inside image cards */
+.actions button {
+  padding: 0.4rem 1rem;
+  font-size: 0.9rem;
+  background-color: #2563eb; /* Blue */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.actions button:hover {
+  background-color: #1d4ed8;
+}
+
+/* For public link display */
+.link {
+  font-size: 0.85rem;
+  color: #6b7280;
+  word-break: break-all;
+}
+
+/* Private images have a slight gray overlay */
+.image-card.gray {
+  background: #f9fafb;
+}

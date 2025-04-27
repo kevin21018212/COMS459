@@ -1,3 +1,4 @@
+import "./image.css";
 import { useState } from "react";
 import { uploadImage } from "./lib/image-api";
 
