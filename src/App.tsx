@@ -12,6 +12,8 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const navigate = useNavigate();
 
+  Amplify.configure({ ...awsExports });
+
   useEffect(() => {
     getCurrentUser()
       .then(() => {
