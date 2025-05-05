@@ -6,3 +6,4 @@ const awsmobile = {
 }
 
 export default awsmobile;
+export awsExports;
