@@ -5,6 +5,7 @@ import { listImages, makePublic, makePrivate, deleteImage } from "./lib/image-ap
 import "./App.css";
 import ImageGrid from "./imageGrid";
 import UploadImage from "./uploadImage";
+import { Amplify } from 'aws-amplify';
 
 function App() {
   const [images, setImages] = useState<any[]>([]);
