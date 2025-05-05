@@ -1,3 +1,4 @@
+import "./image.css";
 interface Image {
   key: string;
   url: string;
