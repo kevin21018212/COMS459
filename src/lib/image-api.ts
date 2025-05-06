@@ -42,17 +42,48 @@ export async function deleteImage(key: string) {
 }
 
 export async function uploadImage(file: File) {
+  console.log("[uploadImage] Starting image upload...");
+
   const session = await fetchAuthSession();
   const token = session.tokens?.accessToken?.toString();
+
+  if (!token) {
+    console.error("[uploadImage] No access token found.");
+    throw new Error("Authentication token is missing.");
+  }
+
+  console.log("[uploadImage] Retrieved access token.");
 
   const formData = new FormData();
   formData.append("file", file);
 
-  return fetch(`${API}/upload`, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-    body: formData,
-  }).then((res) => res.json());
+  console.log("[uploadImage] FormData prepared:");
+  for (const [key, value] of formData.entries()) {
+    console.log(`  - ${key}:`, value);
+  }
+
+  try {
+    const response = await fetch(`${API}/upload`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: formData,
+    });
+
+    console.log(`[uploadImage] Response status: ${response.status}`);
+
+    if (!response.ok) {
+      const text = await response.text();
+      console.error("[uploadImage] Server responded with error:", text);
+      throw new Error(`Upload failed: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log("[uploadImage] Upload successful:", data);
+    return data;
+  } catch (err) {
+    console.error("[uploadImage] Upload failed:", err);
+    throw err;
+  }
 }
