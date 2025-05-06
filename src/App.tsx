@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getCurrentUser } from "aws-amplify/auth";
+import { getCurrentUser, signOut } from "aws-amplify/auth";
 import { listImages, makePublic, makePrivate, deleteImage } from "./lib/image-api";
 import "./App.css";
 import ImageGrid from "./imageGrid";
@@ -63,7 +63,7 @@ function App() {
   return (
     <div className="container">
       <h1>Your Images</h1>
-
+      <button onClick={() => signOut().then(() => navigate("/login"))}>Sign Out</button>
       <ImageGrid
         images={images}
         onMakePublic={handleMakePublic}

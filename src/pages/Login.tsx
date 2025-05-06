@@ -1,13 +1,30 @@
-import { withAuthenticator } from "@aws-amplify/ui-react";
+import { Authenticator } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+
+function RedirectAfterLogin() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    navigate("/");
+  }, [navigate]);
+
+  return null;
+}
 
 function LoginPage() {
   return (
-    <div style={{ padding: "2rem" }}>
-      <h2>Welcome to the Photo App</h2>
-      <p>Please sign in to continue</p>
-    </div>
+    <Authenticator
+      loginMechanisms={["email"]}
+      signUpAttributes={["email"]}
+      socialProviders={[]}
+      hideSignUp={false}
+      variation="default"
+    >
+      <RedirectAfterLogin />
+    </Authenticator>
   );
 }
 
-export default withAuthenticator(LoginPage);
+export default LoginPage;
