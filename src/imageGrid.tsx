@@ -16,7 +16,6 @@ interface ImageGridProps {
 export default function ImageGrid({ images, onMakePublic, onMakePrivate, onDelete }: ImageGridProps) {
   return (
     <div className="image-grid">
-      <h1>Your Images</h1>
       {images.map((img) => (
         <div key={img.key} className={`image-card ${img.visibility === "private" ? "gray" : ""}`}>
           <img src={img.url} alt={img.key} />
