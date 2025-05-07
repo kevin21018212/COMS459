@@ -18,9 +18,19 @@ export async function listImages() {
 
   return Promise.all(
     metadataList.map(async (item: any) => {
-      const res = await fetch(item.url, {
+      // Sanitize URL: remove slash before ? if present
+      let cleanUrl = item.url.replace("/?", "?");
+
+      console.log("Fetching from URL:", cleanUrl); // optional debug
+
+      const res = await fetch(cleanUrl, {
         headers: await authHeader(),
       });
+
+      if (!res.ok) {
+        console.error(`Failed to fetch ${cleanUrl}:`, res.status);
+        return null;
+      }
 
       const blob = await res.blob();
       const objectUrl = URL.createObjectURL(blob);
@@ -31,7 +41,7 @@ export async function listImages() {
         visibility: item.visibility,
       };
     })
-  );
+  ).then((results) => results.filter(Boolean));
 }
 
 export async function makePublic(key: string) {
