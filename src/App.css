@@ -114,3 +114,24 @@ button {
 button:hover {
   background: linear-gradient(135deg, #ff6347, #ff4d6d);
 }
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.sign-out {
+  background: linear-gradient(135deg, #ff7f50, #ff6b81);
+  color: white;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.sign-out:hover {
+  background: linear-gradient(135deg, #ff6347, #ff4d6d);
+}
