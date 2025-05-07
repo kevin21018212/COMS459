@@ -14,6 +14,7 @@ interface ImageGridProps {
 }
 
 export default function ImageGrid({ images, onMakePublic, onMakePrivate, onDelete }: ImageGridProps) {
+  console.log(images);
   return (
     <div className="image-grid">
       {images.map((img) => (

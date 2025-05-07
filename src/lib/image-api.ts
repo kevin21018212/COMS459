@@ -43,7 +43,7 @@ export async function listImages() {
       return {
         key: filename,
         url: objectUrl,
-        visibility: item.type, // or `item.visibility` if you add that later
+        visibility: item.type,
       };
     })
   ).then((results) => results.filter(Boolean));

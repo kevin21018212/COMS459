@@ -82,8 +82,8 @@
 
 /* Image inside the card */
 .image-card {
-  max-width: 260px;
-  max-height: 360px;
+  max-width: 300px;
+  max-height: 400px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
