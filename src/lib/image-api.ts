@@ -18,8 +18,15 @@ export async function listImages() {
 
   return Promise.all(
     metadataList.map(async (item: any) => {
-      const filename = item.url;
+      const filename = item.photo_name;
+
+      if (!filename) {
+        console.warn("Missing photo_name for item:", item);
+        return null;
+      }
+
       const imageUrl = `${API}/list?filename=${encodeURIComponent(filename)}`;
+      console.log("Fetching:", imageUrl);
 
       const res = await fetch(imageUrl, {
         headers: await authHeader(),
@@ -34,9 +41,9 @@ export async function listImages() {
       const objectUrl = URL.createObjectURL(blob);
 
       return {
-        key: item.key,
+        key: filename,
         url: objectUrl,
-        visibility: item.visibility,
+        visibility: item.type, // or `item.visibility` if you add that later
       };
     })
   ).then((results) => results.filter(Boolean));
