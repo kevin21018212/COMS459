@@ -12,9 +12,26 @@ async function authHeader() {
 }
 
 export async function listImages() {
-  return fetch(`${API}/list`, {
+  const metadataList = await fetch(`${API}/listImages`, {
     headers: await authHeader(),
   }).then((res) => res.json());
+
+  return Promise.all(
+    metadataList.map(async (item: any) => {
+      const res = await fetch(item.url, {
+        headers: await authHeader(),
+      });
+
+      const blob = await res.blob();
+      const objectUrl = URL.createObjectURL(blob);
+
+      return {
+        key: item.key,
+        url: objectUrl,
+        visibility: item.visibility,
+      };
+    })
+  );
 }
 
 export async function makePublic(key: string) {

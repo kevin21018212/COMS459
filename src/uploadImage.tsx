@@ -30,7 +30,6 @@ export default function UploadImage({ onUploadComplete }: UploadImageProps) {
       <label htmlFor="file-upload" className={`file-upload-label ${!selectedFile ? "highlight" : ""}`}>
         {selectedFile ? selectedFile.name : "Choose File"}
       </label>
-
       <input
         id="file-upload"
         type="file"

@@ -2,8 +2,7 @@ import "./image.css";
 
 interface Image {
   key: string;
-  base64_img?: string;
-  url?: string;
+  url: string;
   visibility: "private" | "public";
 }
 
@@ -20,7 +19,7 @@ export default function ImageGrid({ images, onMakePublic, onMakePrivate, onDelet
       <h1>Your Images</h1>
       {images.map((img) => (
         <div key={img.key} className={`image-card ${img.visibility === "private" ? "gray" : ""}`}>
-          <img src={img.base64_img || img.url || ""} alt={img.key} />
+          <img src={img.url} alt={img.key} />
 
           <div className="actions">
             {img.visibility === "private" ? (
