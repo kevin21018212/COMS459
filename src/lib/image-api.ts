@@ -39,7 +39,7 @@ export async function listImages() {
 
       const blob = await res.blob();
       const objectUrl = URL.createObjectURL(blob);
-
+      console.log(item);
       return {
         key: filename,
         url: objectUrl,
