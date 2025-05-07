@@ -31,10 +31,8 @@ function App() {
   }, []);
 
   const loadImages = async () => {
-    setLoading(true);
     const data = await listImages();
     setImages(data);
-    setLoading(false);
   };
 
   const handleMakePublic = (key: string) => {
@@ -74,7 +72,6 @@ function App() {
       </div>
       <ImageGrid
         images={images}
-        loading={loading}
         onMakePublic={handleMakePublic}
         onMakePrivate={handleMakePrivate}
         onDelete={handleDelete}
