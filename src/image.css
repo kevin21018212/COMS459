@@ -96,7 +96,7 @@
 }
 
 .image-card img {
-  max-height: 260px;
+  max-height: 200px;
   object-fit: cover;
   border-bottom: 1px solid #e5e7eb;
 }
