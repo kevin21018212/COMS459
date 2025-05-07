@@ -18,7 +18,7 @@ export async function listImages() {
 
   return Promise.all(
     metadataList.map(async (item: any) => {
-      const filename = item.key; // assuming this is the filename (or adjust accordingly)
+      const filename = item.url;
       const imageUrl = `${API}/list?filename=${encodeURIComponent(filename)}`;
 
       const res = await fetch(imageUrl, {
