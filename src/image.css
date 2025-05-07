@@ -2,36 +2,68 @@
 .upload-section {
   margin-top: 2rem;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 0.75rem;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
-/* File input styling */
 .upload-section input[type="file"] {
+  position: relative;
   padding: 0.5rem;
-  font-size: 1rem;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  background: white;
+  font-size: 0.9rem;
+  color: #333;
+  cursor: pointer;
+  transition: border 0.3s ease;
 }
 
-/* Upload button styling */
+.upload-section input[type="file"]:hover {
+  border-color: #6c63ff;
+}
+
 .upload-section button {
-  padding: 0.5rem 1.5rem;
-  font-size: 1rem;
-  background-color: #4f46e5; /* Indigo */
-  color: white;
+  padding: 0.6rem 1.2rem;
   border: none;
   border-radius: 8px;
+  background: linear-gradient(135deg, #6c63ff, #a084e8);
+  color: white;
+  font-size: 0.95rem;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: background 0.3s ease;
 }
 
-.upload-section button:disabled {
-  background-color: #9ca3af; /* Gray when disabled */
-  cursor: not-allowed;
+.upload-section button:hover {
+  background: linear-gradient(135deg, #5b54e7, #9170f1);
 }
 
-.upload-section button:hover:not(:disabled) {
-  background-color: #4338ca;
+.hidden-file-input {
+  display: none;
+}
+
+.file-upload-label {
+  padding: 0.65rem 1.2rem;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  color: #333;
+  max-width: 300px;
+  min-width: 220px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background: white;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* 🔥 Highlight when no file selected */
+.file-upload-label.highlight {
+  background: linear-gradient(135deg, #ff7f50, #ff6b81);
+  color: white;
+  border-color: transparent;
 }
 
 /* Image grid layout */

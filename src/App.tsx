@@ -63,7 +63,6 @@ function App() {
   return (
     <div className="container">
       <div className="header">
-        <h1>Your Images</h1>
         <button className="sign-out" onClick={() => signOut().then(() => navigate("/login"))}>
           Sign Out
         </button>

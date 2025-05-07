@@ -27,7 +27,16 @@ export default function UploadImage({ onUploadComplete }: UploadImageProps) {
 
   return (
     <div className="upload-section">
-      <input type="file" onChange={(e) => setSelectedFile(e.target.files?.[0] || null)} />
+      <label htmlFor="file-upload" className={`file-upload-label ${!selectedFile ? "highlight" : ""}`}>
+        {selectedFile ? selectedFile.name : "Choose File"}
+      </label>
+
+      <input
+        id="file-upload"
+        type="file"
+        onChange={(e) => setSelectedFile(e.target.files?.[0] || null)}
+        className="hidden-file-input"
+      />
       <button onClick={handleUpload} disabled={!selectedFile || uploading}>
         {uploading ? "Uploading..." : "Upload"}
       </button>
