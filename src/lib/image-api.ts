@@ -18,17 +18,15 @@ export async function listImages() {
 
   return Promise.all(
     metadataList.map(async (item: any) => {
-      // Sanitize URL: remove slash before ? if present
-      let cleanUrl = item.url.replace("/?", "?");
+      const filename = item.key; // assuming this is the filename (or adjust accordingly)
+      const imageUrl = `${API}/list?filename=${encodeURIComponent(filename)}`;
 
-      console.log("Fetching from URL:", cleanUrl); // optional debug
-
-      const res = await fetch(cleanUrl, {
+      const res = await fetch(imageUrl, {
         headers: await authHeader(),
       });
 
       if (!res.ok) {
-        console.error(`Failed to fetch ${cleanUrl}:`, res.status);
+        console.error(`Failed to fetch image ${filename}:`, res.status);
         return null;
       }
 
