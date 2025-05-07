@@ -69,7 +69,9 @@ function App() {
           Sign Out
         </button>
       </div>
-
+      <div className="grid-title">
+        <h1>Your Images</h1>
+      </div>
       <ImageGrid
         images={images}
         loading={loading}

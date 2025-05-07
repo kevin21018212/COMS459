@@ -8,7 +8,6 @@ body {
 }
 
 .container {
-  border: 1px dotted red;
   padding: 2rem;
   margin: auto;
   text-align: center;

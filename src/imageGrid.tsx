@@ -16,35 +16,35 @@ interface ImageGridProps {
 
 export default function ImageGrid({ images, loading, onMakePublic, onMakePrivate, onDelete }: ImageGridProps) {
   return (
-    <div className="image-grid">
-      <h1>Your Images</h1>
-
-      {loading ? (
-        <div className="spinner-container">
-          <div className="spinner" />
-          <p>Loading...</p>
-        </div>
-      ) : (
-        images.map((img) => (
-          <div key={img.key} className={`image-card ${img.visibility === "private" ? "gray" : ""}`}>
-            <img src={img.url} alt={img.key} />
-
-            <div className="actions">
-              {img.visibility === "private" ? (
-                <>
-                  <button onClick={() => onMakePublic(img.key)}>Make Public</button>
-                  <button onClick={() => onDelete(img.key)}>Delete</button>
-                </>
-              ) : (
-                <>
-                  <button onClick={() => onMakePrivate(img.key)}>Make Private</button>
-                  <p className="link">🔗 {img.url}</p>
-                </>
-              )}
-            </div>
+    <>
+      <div className="image-grid">
+        {loading ? (
+          <div className="spinner-container">
+            <div className="spinner" />
+            <p>Loading...</p>
           </div>
-        ))
-      )}
-    </div>
+        ) : (
+          images.map((img) => (
+            <div key={img.key} className={`image-card ${img.visibility === "private" ? "gray" : ""}`}>
+              <img src={img.url} alt={img.key} />
+
+              <div className="actions">
+                {img.visibility === "private" ? (
+                  <>
+                    <button onClick={() => onMakePublic(img.key)}>Make Public</button>
+                    <button onClick={() => onDelete(img.key)}>Delete</button>
+                  </>
+                ) : (
+                  <>
+                    <button onClick={() => onMakePrivate(img.key)}>Make Private</button>
+                    <p className="link">🔗 {img.url}</p>
+                  </>
+                )}
+              </div>
+            </div>
+          ))
+        )}
+      </div>
+    </>
   );
 }
