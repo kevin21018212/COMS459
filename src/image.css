@@ -116,8 +116,8 @@
   flex-grow: 1;
 }
 /* Link Text */
-.link {
-  font-size: 0.75rem;
+.link button {
+  font-size: 0.5rem;
   color: #444;
   text-decoration: none;
   word-break: break-word;
