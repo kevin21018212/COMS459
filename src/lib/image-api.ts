@@ -50,11 +50,14 @@ export async function listImages() {
 }
 
 export async function makePublic(key: string) {
-  return fetch(`${API}/make-public`, {
+  const res = await fetch(`${API}/make-public`, {
     method: "POST",
     body: JSON.stringify({ key }),
     headers: await authHeader(),
-  }).then((res) => res.json());
+  });
+
+  const data = await res.json();
+  return { key, url: data.public_url };
 }
 
 export async function makePrivate(key: string) {

@@ -30,7 +30,9 @@ export default function ImageGrid({ images, onMakePublic, onMakePrivate, onDelet
             ) : (
               <>
                 <button onClick={() => onMakePrivate(img.key)}>Make Private</button>
-                <p className="link">🔗 {img.url}</p>
+                <a className="link" href={img.url} target="_blank" rel="noopener noreferrer">
+                  🔗 View Public Link
+                </a>
               </>
             )}
           </div>
