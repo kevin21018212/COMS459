@@ -93,21 +93,6 @@
   gap: 0.5rem;
 }
 
-.actions button {
-  padding: 0.4rem 1rem;
-  font-size: 0.9rem;
-  background-color: #2563eb;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.actions button:hover {
-  background-color: #1d4ed8;
-}
-
 .btn-tray {
   display: flex;
   gap: 0.5rem;
