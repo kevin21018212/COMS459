@@ -136,3 +136,7 @@
 .image-card.gray {
   background: #f9fafb;
 }
+
+.btn-tray {
+  display: flex;
+}

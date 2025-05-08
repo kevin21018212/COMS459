@@ -25,12 +25,17 @@ export default function ImageGrid({ images, onMakePublic, onMakePrivate, onDelet
           <div className="actions">
             {img.visibility === "private" ? (
               <>
-                <button onClick={() => onMakePublic(img.key)} disabled={loading}>
-                  Make Public
-                </button>
-                <button onClick={() => onDelete(img.key)} disabled={loading}>
-                  Delete
-                </button>
+                <div className="btn-tray">
+                  <button onClick={() => onMakePublic(img.key)} disabled={loading}>
+                    Make Public
+                  </button>
+                  <button onClick={() => onDelete(img.key)} disabled={loading}>
+                    Delete
+                  </button>
+                </div>
+                <a className="link" href={img.url} target="_blank" rel="noopener noreferrer">
+                  🔗 {img.url}
+                </a>
               </>
             ) : (
               <>
@@ -38,7 +43,7 @@ export default function ImageGrid({ images, onMakePublic, onMakePrivate, onDelet
                   Make Private
                 </button>
                 <a className="link" href={img.url} target="_blank" rel="noopener noreferrer">
-                  🔗 View Public Link
+                  🔗 {img.url}
                 </a>
               </>
             )}
