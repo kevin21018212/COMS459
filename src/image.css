@@ -58,7 +58,7 @@
 }
 
 .image-card {
-  max-width: 350px;
+  max-width: 400px;
   max-height: 400px;
   display: flex;
   flex-direction: column;
@@ -111,6 +111,7 @@
   background-color: #f3f4f6;
   border-radius: 6px;
   font-family: monospace;
+  overflow: wrap;
 }
 
 /* Spinner */
