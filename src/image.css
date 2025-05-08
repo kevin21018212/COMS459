@@ -118,7 +118,7 @@
   color: white;
 }
 /* Link Text */
-.link {
+.link button {
   font-size: 0.75rem;
   color: #444; /* neutral gray */
   text-decoration: none;
