@@ -36,6 +36,7 @@ function App() {
     try {
       const data = await listImages();
       setImages(data);
+      console.log("list iamges data", data);
     } catch (err) {
       console.error("Failed to load images:", err);
     } finally {

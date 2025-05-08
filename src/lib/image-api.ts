@@ -26,8 +26,6 @@ export async function listImages() {
       }
 
       const imageUrl = `${API}/list?filename=${encodeURIComponent(filename)}`;
-      console.log("Fetching:", imageUrl);
-
       const res = await fetch(imageUrl, {
         headers: await authHeader(),
       });
