@@ -16,8 +16,9 @@ interface ImageGridProps {
 
 export default function ImageGrid({ images, onMakePublic, onMakePrivate, onDelete, loading }: ImageGridProps) {
   if (loading) {
-    return <p className="grid-loading">Updating images...</p>;
+    return <div className="grid-spinner"></div>;
   }
+
   return (
     <div className="image-grid">
       {images.map((img) => (
@@ -45,7 +46,7 @@ export default function ImageGrid({ images, onMakePublic, onMakePrivate, onDelet
                   Make Private
                 </button>
                 <a className="link" href={img.url} target="_blank" rel="noopener noreferrer">
-                  🔗 {img.url}
+                  {img.url}
                 </a>
               </>
             )}
