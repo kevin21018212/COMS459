@@ -43,14 +43,16 @@ export default function ImageGrid({ images, onMakePublic, onMakePrivate, onDelet
                   }}
                   title={img.url}
                 >
-                  {img.url.length > 50 ? `${img.url.slice(0, 150)}...` : img.url}
+                  {img.url.length > 50 ? `${img.url.slice(0, 100)}...` : img.url}
                 </button>
               </>
             ) : (
               <>
-                <button onClick={() => onMakePrivate(img.key)} disabled={loading}>
-                  Make Private
-                </button>
+                <div className="btn-tray">
+                  <button onClick={() => onMakePrivate(img.key)} disabled={loading}>
+                    Make Private
+                  </button>
+                </div>
                 <button
                   className="link"
                   onClick={() => {
@@ -58,7 +60,7 @@ export default function ImageGrid({ images, onMakePublic, onMakePrivate, onDelet
                   }}
                   title={img.url}
                 >
-                  {img.url.length > 50 ? `${img.url.slice(0, 150)}...` : img.url}
+                  {img.url.length > 50 ? `${img.url.slice(0, 100)}...` : img.url}
                 </button>
               </>
             )}

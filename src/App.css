@@ -39,17 +39,12 @@ h1 {
 /* General buttons (login, upload, etc.) */
 button {
   padding: 0.75rem 1.5rem;
-  background: linear-gradient(135deg, #ff7f50, #ff6b81);
   border: none;
   border-radius: 8px;
-  color: white;
+
   font-size: 1rem;
   cursor: pointer;
   transition: background 0.3s ease;
-}
-
-button:hover {
-  background: linear-gradient(135deg, #ff6347, #ff4d6d);
 }
 
 /* Sign out button */

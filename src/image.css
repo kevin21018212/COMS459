@@ -114,11 +114,13 @@
 }
 .btn-tray button {
   flex-grow: 1;
+  background: linear-gradient(135deg, #ff7f50, #ff6b81);
+  color: white;
 }
 /* Link Text */
-.link button {
-  font-size: 0.5rem;
-  color: #444;
+.link {
+  font-size: 0.75rem;
+  color: #444; /* neutral gray */
   text-decoration: none;
   word-break: break-word;
   display: inline-block;
