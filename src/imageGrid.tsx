@@ -40,6 +40,7 @@ export default function ImageGrid({ images, onMakePublic, onMakePrivate, onDelet
                   className="link"
                   onClick={() => {
                     navigator.clipboard.writeText(img.url);
+                    alert("Link Copied");
                   }}
                   title={img.url}
                 >
@@ -57,6 +58,7 @@ export default function ImageGrid({ images, onMakePublic, onMakePrivate, onDelet
                   className="link"
                   onClick={() => {
                     navigator.clipboard.writeText(img.url);
+                    alert("Link Copied");
                   }}
                   title={img.url}
                 >
