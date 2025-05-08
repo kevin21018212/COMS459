@@ -34,9 +34,14 @@ function App() {
   const loadImages = async () => {
     setGridLoading(true);
     try {
-      const data = await listImages();
-      setImages(data);
-      console.log("list iamges data", data);
+      const fetchedImages = await listImages();
+      setImages((prevImages) => {
+        const imageMap = new Map(prevImages.map((img) => [img.key, img]));
+        return fetchedImages.map((img) => {
+          const existing = imageMap.get(img.key);
+          return existing ? { ...img, url: existing.url } : img;
+        });
+      });
     } catch (err) {
       console.error("Failed to load images:", err);
     } finally {
