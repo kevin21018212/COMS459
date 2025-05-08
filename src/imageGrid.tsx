@@ -15,9 +15,11 @@ interface ImageGridProps {
 }
 
 export default function ImageGrid({ images, onMakePublic, onMakePrivate, onDelete, loading }: ImageGridProps) {
+  if (loading) {
+    return <p className="grid-loading">Updating images...</p>;
+  }
   return (
     <div className="image-grid">
-      {loading && <p className="grid-loading">Updating...</p>}
       {images.map((img) => (
         <div key={img.key} className={`image-card ${img.visibility === "private" ? "gray" : ""}`}>
           <img src={img.url} alt={img.key} />
