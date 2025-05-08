@@ -105,11 +105,10 @@
 /* Link Text */
 .link button {
   font-size: 0.5rem;
-  color: #444; /* neutral gray */
+  color: #444;
   text-decoration: none;
-  word-break: break-word;
   background-color: #f3f4f6;
-  padding: 0.15 rem;
+  padding: 0.15rem;
   border-radius: 6px;
   font-family: monospace;
 }
