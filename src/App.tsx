@@ -34,14 +34,26 @@ function App() {
   const loadImages = async () => {
     setGridLoading(true);
     try {
-      const fetchedImages = await listImages();
-      setImages((prevImages) => {
-        const imageMap = new Map(prevImages.map((img) => [img.key, img]));
-        return fetchedImages.map((img) => {
-          const existing = imageMap.get(img.key);
-          return existing ? { ...img, url: existing.url } : img;
-        });
-      });
+      const rawImages = await listImages();
+
+      const updatedImages = await Promise.all(
+        rawImages.map(async (img: any) => {
+          if (img.visibility === "public") {
+            // Regenerate fresh public URL from backend
+            try {
+              const { url: publicUrl } = await makePublic(img.key);
+              return { ...img, url: publicUrl, visibility: "public" };
+            } catch (err) {
+              console.warn(`Failed to refresh public URL for ${img.key}`);
+              return img;
+            }
+          }
+          return img;
+        })
+      );
+
+      setImages(updatedImages);
+      console.log("listImages data (with updated public URLs):", updatedImages);
     } catch (err) {
       console.error("Failed to load images:", err);
     } finally {
