@@ -35,8 +35,16 @@ function App() {
     setImages(data);
   };
 
-  const handleMakePublic = (key: string) => {
-    makePublic(key).then(loadImages);
+  const handleMakePublic = async (key: string) => {
+    try {
+      const { url: publicUrl } = await makePublic(key);
+
+      setImages((prevImages) =>
+        prevImages.map((img) => (img.key === key ? { ...img, url: publicUrl, visibility: "public" } : img))
+      );
+    } catch (err) {
+      console.error("Failed to make public:", err);
+    }
   };
 
   const handleMakePrivate = (key: string) => {
