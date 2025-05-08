@@ -127,9 +127,9 @@
 
 /* For public link display */
 .link {
-  font-size: 0.85rem;
-  color: #6b7280;
-  word-break: break-all;
+  font-size: 0.5rem;
+  background-color: #6b7280;
+  border-radius: 15px;
 }
 
 /* Private images have a slight gray overlay */
@@ -139,4 +139,8 @@
 
 .btn-tray {
   display: flex;
+}
+
+.btn-tray button {
+  flex-grow: 1;
 }

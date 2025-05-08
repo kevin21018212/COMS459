@@ -32,8 +32,15 @@ function App() {
   }, []);
 
   const loadImages = async () => {
-    const data = await listImages();
-    setImages(data);
+    setGridLoading(true);
+    try {
+      const data = await listImages();
+      setImages(data);
+    } catch (err) {
+      console.error("Failed to load images:", err);
+    } finally {
+      setGridLoading(false);
+    }
   };
 
   const handleMakePublic = async (key: string) => {
