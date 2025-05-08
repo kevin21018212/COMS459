@@ -11,6 +11,7 @@ import awsExports from "./aws-exports";
 function App() {
   const [images, setImages] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [gridLoading, setGridLoading] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const navigate = useNavigate();
 
@@ -36,23 +37,31 @@ function App() {
   };
 
   const handleMakePublic = async (key: string) => {
+    setGridLoading(true);
     try {
       const { url: publicUrl } = await makePublic(key);
-
       setImages((prevImages) =>
         prevImages.map((img) => (img.key === key ? { ...img, url: publicUrl, visibility: "public" } : img))
       );
     } catch (err) {
       console.error("Failed to make public:", err);
+    } finally {
+      setGridLoading(false);
     }
   };
 
-  const handleMakePrivate = (key: string) => {
-    makePrivate(key).then(loadImages);
+  const handleMakePrivate = async (key: string) => {
+    setGridLoading(true);
+    await makePrivate(key);
+    await loadImages();
+    setGridLoading(false);
   };
 
-  const handleDelete = (key: string) => {
-    deleteImage(key).then(loadImages);
+  const handleDelete = async (key: string) => {
+    setGridLoading(true);
+    await deleteImage(key);
+    await loadImages();
+    setGridLoading(false);
   };
 
   if (loading) return <p>Loading...</p>;
@@ -83,6 +92,7 @@ function App() {
         onMakePublic={handleMakePublic}
         onMakePrivate={handleMakePrivate}
         onDelete={handleDelete}
+        loading={gridLoading}
       />
 
       <UploadImage onUploadComplete={loadImages} />
