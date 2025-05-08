@@ -25,6 +25,7 @@ h1 {
   text-align: left;
 }
 
+/* Login fallback screen */
 .login-box {
   background: white;
   padding: 2rem 2.5rem;
@@ -33,16 +34,9 @@ h1 {
   display: inline-block;
   text-align: center;
   margin: 4rem auto;
-  animation: fadeIn 0.4s ease;
 }
 
-.login-box h1 {
-  font-size: 2rem;
-  margin-bottom: 1.2rem;
-  color: #333;
-}
-
-/* Login fallback screen */
+/* General buttons (login, upload, etc.) */
 button {
   padding: 0.75rem 1.5rem;
   background: linear-gradient(135deg, #ff7f50, #ff6b81);
@@ -57,6 +51,8 @@ button {
 button:hover {
   background: linear-gradient(135deg, #ff6347, #ff4d6d);
 }
+
+/* Sign out button */
 .header {
   display: flex;
   justify-content: flex-end;
