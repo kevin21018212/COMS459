@@ -45,8 +45,8 @@ export default function ImageGrid({ images, onMakePublic, onMakePrivate, onDelet
                 <button onClick={() => onMakePrivate(img.key)} disabled={loading}>
                   Make Private
                 </button>
-                <a className="link" href={img.url} target="_blank" rel="noopener noreferrer">
-                  {img.url}
+                <a className="link" href={img.url} target="_blank" rel="noopener noreferrer" title={img.url}>
+                  {img.url.length > 50 ? `${img.url.slice(0, 50)}...` : img.url}
                 </a>
               </>
             )}

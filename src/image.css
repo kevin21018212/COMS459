@@ -117,11 +117,15 @@
 }
 /* Link Text */
 .link {
-  font-size: 0.85rem;
-  color: #2563eb;
-  text-decoration: underline;
+  font-size: 0.75rem;
+  color: #444;
+  text-decoration: none;
   word-break: break-word;
   display: inline-block;
+  background-color: #f3f4f6;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  font-family: monospace;
 }
 
 /* Spinner */
