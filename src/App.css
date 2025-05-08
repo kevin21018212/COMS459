@@ -38,11 +38,9 @@ h1 {
 
 /* General buttons (login, upload, etc.) */
 button {
-  padding: 0.75rem 1.5rem;
   border: none;
   border-radius: 8px;
 
-  font-size: 1rem;
   cursor: pointer;
   transition: background 0.3s ease;
 }
