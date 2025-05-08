@@ -58,7 +58,7 @@
 }
 
 .image-card {
-  max-width: 300px;
+  max-width: 350px;
   max-height: 400px;
   display: flex;
   flex-direction: column;
@@ -110,7 +110,7 @@
   word-break: break-word;
   display: inline-block;
   background-color: #f3f4f6;
-  padding: 0.25rem 0.5rem;
+  padding: 0.15 rem;
   border-radius: 6px;
   font-family: monospace;
 }
