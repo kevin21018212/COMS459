@@ -14,16 +14,6 @@ main {
   align-items: stretch;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.15em;
-  font-weight: 500;
-  font-family: inherit;
-  cursor: pointer;
-  transition: border-color 0.25s;
-  color: white;
-}
 button:hover {
   border-color: #646cff;
 }
