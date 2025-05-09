@@ -105,15 +105,21 @@
   color: white;
 }
 /* Link Text */
-.link button {
-  font-size: 0.5rem;
+.link {
+  font-size: 0.75rem;
   color: #444;
-  text-decoration: none;
   background-color: #f3f4f6;
+  padding: 0.5rem;
   border-radius: 6px;
-  padding: 0.15em;
-  overflow: wrap;
-  height: 100px;
+  font-family: monospace;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  text-align: left;
 }
 
 /* Spinner */
